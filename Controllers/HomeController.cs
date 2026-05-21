@@ -13,7 +13,22 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult GenerarSugerencia(SugeridorReceta datos)
+    {
+        ViewBag.Nombre        = datos.Nombre;
+        ViewBag.Edad          = datos.CalcularEdad();
+        ViewBag.Plato         = datos.DeterminarPlato();
+        ViewBag.Tiempo        = datos.CalcularTiempo();
+        ViewBag.Dificultad    = datos.DeterminarDificultad();
+        ViewBag.Personas      = datos.CantidadPersonas;
+        return View("Resultado");
+    }
+
 
     public IActionResult Privacy()
     {
